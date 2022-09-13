@@ -1,0 +1,35 @@
+{
+  "name": "scene-switch-cg",
+  "version": "0.0.0",
+  "description": "List and switch between scenes in OBS via websocket (v28+)",
+  "homepage": "",
+  "author": {
+    "name": "Nathan Eloe",
+    "email": "powerofazure@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "panel",
+        "title": "Panel",
+        "width": 2,
+        "file": "panel.html",
+        "headerColor": "#525F78"
+      }
+    ]
+  },
+  "repository": "git@github.com:neloe/scene-switch-cg",
+  "license": "MIT"
+}
