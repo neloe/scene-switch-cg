@@ -23,7 +23,7 @@
     "dashboardPanels": [
       {
         "name": "panel",
-        "title": "Panel",
+        "title": "Scene Switcher",
         "width": 2,
         "file": "panel.html",
         "headerColor": "#525F78"

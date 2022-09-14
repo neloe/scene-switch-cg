@@ -11,7 +11,7 @@ function make_btn(l,active) {
     btn.setAttribute('onclick',`switch_scene(${l})`)
     if (active) btn.setAttribute('checked','true')
     lbl = document.createElement('label')
-    lbl.setAttribute('class','btn btn-outline-primary')
+    lbl.setAttribute('class','btn btn-primary')
     lbl.setAttribute('for',l)
     lbl.innerHTML=l
     scenelist.appendChild(btn)
@@ -20,13 +20,13 @@ function make_btn(l,active) {
 function populate_list(host='127.0.0.1', pass=null)
 {
     obs.connect(`ws://${host}:4455`, pass).then( ()=>{
-        console.log(`connected to ws://${host}:4455`)
+        //console.log(`connected to ws://${host}:4455`)
         obs.call('GetSceneList').then( res => {
             console.log(res.currentProgramSceneName)
             console.log(res.scenes)
             for (scene of res.scenes)
             {
-                console.log(scene.sceneName, res.currentProgramSceneName,scene.sceneName==res.currentProgramSceneName)
+                //console.log(scene.sceneName, res.currentProgramSceneName,scene.sceneName==res.currentProgramSceneName)
                 make_btn(scene.sceneName, scene.sceneName==res.currentProgramSceneName)
             }
         })
@@ -35,7 +35,25 @@ function populate_list(host='127.0.0.1', pass=null)
 
 function switch_scene(l)
 {
-    console.log(l.id)
-    console.log({'sceneName':l.id})
+    //console.log(l.id)
+    //console.log({'sceneName':l.id})
     obs.call('SetCurrentProgramScene',{'sceneName':l.id})
+}
+
+function connect()
+{
+    while (scenelist.firstChild) {
+        scenelist.removeChild(scenelist.lastChild)
+    }
+    h = document.getElementById('host').value
+    p = document.getElementById('pass').value
+    if (p == '') p = null;
+    if (h == '') h = null;
+    if (!p)
+    {
+        if (!h) populate_list()
+        else populate_list(h)
+    }
+    else if (!h) populate_list('127.0.0.1', p)
+    else populate_list(h,p)
 }
